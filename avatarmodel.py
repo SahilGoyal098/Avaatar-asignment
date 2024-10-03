@@ -4,6 +4,11 @@ import numpy as np
 from diffusers import StableDiffusionInpaintPipeline
 import torch
 
+# Input Should be image with white background and one object in it
+
+
+
+
 # Function to create a refined mask
 def create_object_mask(image):
     image_array = np.array(image)
