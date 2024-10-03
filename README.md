@@ -7,7 +7,8 @@
 <img src="https://drive.google.com/uc?id=15dVKM5kelXuzxSCZmXXMy47vtX48CmDS" alt="project-screenshot" width="400" height="400" />
 
 
-  
+[Watch the Video](https://github.com/SahilGoyal098/Avaatar-asignment/blob/master/output_video_3oct_evening.mp4)
+
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
