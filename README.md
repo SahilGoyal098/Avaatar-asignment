@@ -4,7 +4,7 @@
 
 <h2>Project Screenshots:</h2>
 <img src="https://drive.google.com/uc?id=1aPS18uvwNnloKzzXmBKE-VmB-OP_nJM7" alt="project-screenshot" width="400" height="400" />
-<img src="https://drive.google.com/uc?id=1aPS18uvwNnloKzzXmBKE-VmB-OP_nJM7" alt="project-screenshot" width="400" height="400" />
+<img src="https://drive.google.com/uc?id=15dVKM5kelXuzxSCZmXXMy47vtX48CmDS" alt="project-screenshot" width="400" height="400" />
 
 
   
