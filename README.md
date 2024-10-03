@@ -3,8 +3,8 @@
 <p id="description">This project focuses on using generative AI to create realistic product photographs by seamlessly integrating an object image (with a white background) into a text-generated scene. The goal is to place the object naturally into various contexts preserving its details while ensuring that the scene aligns with aspects like lighting spatial positioning and realism.</p>
 
 <h2>Project Screenshots:</h2>
-
-<img src="https://drive.google.com/file/d/1aPS18uvwNnloKzzXmBKE-VmB-OP_nJM7/preview" width="640" height="480"/>
+<img src="https://drive.google.com/uc?id=1aPS18uvwNnloKzzXmBKE-VmB-OP_nJM7" alt="project-screenshot" width="400" height="400" />
+<img src="https://drive.google.com/uc?id=1aPS18uvwNnloKzzXmBKE-VmB-OP_nJM7" alt="project-screenshot" width="400" height="400" />
 
   
   
