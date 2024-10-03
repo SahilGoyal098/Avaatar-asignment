@@ -4,7 +4,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<a href="https://drive.google.com/file/d/1aPS18uvwNnloKzzXmBKE-VmB-OP_nJM7/view?usp=sharing" alt="project-screenshot" width="400" height="400/"/>
+<iframe src="https://drive.google.com/file/d/1aPS18uvwNnloKzzXmBKE-VmB-OP_nJM7/preview" width="640" height="480" allow="autoplay"/>
 
   
   
