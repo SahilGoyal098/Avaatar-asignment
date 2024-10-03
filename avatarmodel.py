@@ -1,7 +1,13 @@
 import cv2
-from PIL import Image, ImageOps
+from PIL import Image
 import numpy as np
 from diffusers import StableDiffusionInpaintPipeline
+import torch
+
+# Input Should be image with white background and one object in it
+
+
+
 
 # Function to create a refined mask
 def create_object_mask(image):
@@ -24,7 +30,6 @@ def resize_and_center_images(init_image, mask_image, scale_factor=0.75):
         raise ValueError("One or both image arrays are None.")
 
     background_size = item_img.shape[:2]
-
     new_size = (int(item_img.shape[1] * scale_factor), int(item_img.shape[0] * scale_factor))
     resized_item = cv2.resize(item_img, new_size)
     resized_mask = cv2.resize(mask_img, new_size)
@@ -53,21 +58,19 @@ def inpaint_image(image, mask, prompt):
     generated_image = pipe(prompt=prompt, image=image, mask_image=mask, num_inference_steps=50).images[0]
     return generated_image
 
-# Generate frames for video with dynamic resizing and background changes
-# Adjusted function to generate frames for video with interval size changes
-# Generate frames for video with dynamic resizing and background changes
-# Reuse generated frames to slow down video without increasing steps significantly
+# Function to generate frames for video with dynamic resizing and background changes
 def generate_frames_for_video(video_prompts, init_image, steps=10, scale_factor=0.98, interval=3, repeat_frames=5):
     frames = []
     mask_image = create_object_mask(init_image)
 
     for prompt in video_prompts:
         for i in range(steps):
-            # Create blank white background of same size as the original image
+            # Create blank white background of the same size as the original image
             blank_background = np.ones_like(np.array(init_image)) * 255
 
             # Adjust size only on specific intervals (e.g., every `interval` frames)
             if i % interval == 0:
+                # Calculate the new size based on the scale factor
                 resized_image, resized_mask = resize_and_center_images(init_image, mask_image, scale_factor ** i)
                 # Inpaint only on size-change frames
                 new_background = inpaint_image(Image.fromarray(resized_image), Image.fromarray(resized_mask), prompt)
@@ -85,7 +88,7 @@ def generate_frames_for_video(video_prompts, init_image, steps=10, scale_factor=
     return frames
 
 # Function to save frames as video (adjusted frame rate for slower video)
-def save_frames_to_video(frames, output_path, fps=5):  # Adjust fps to control video speed
+def save_frames_to_video(frames, output_path, fps=5):
     height, width, layers = frames[0].shape
     video = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
 
@@ -93,25 +96,48 @@ def save_frames_to_video(frames, output_path, fps=5):  # Adjust fps to control v
         video.write(frame)
     video.release()
 
-# Example usage:
-init_image_path = r"/content/example2.jpg"  # Change this to your image path
-init_image = Image.open(init_image_path).convert("RGB")
+# Main function to allow user interaction for generating image or video
+def main():
+    choice = input("Do you want to generate a single image (enter 'image') or a video (enter 'video')? ").strip().lower()
+    
+    if choice == 'image':
+        image_path = input("Enter the path of the image: ")
+        prompt = input("Enter the prompt for inpainting: ")
+        
+        init_image = Image.open(image_path).convert("RGB")
+        mask_image = create_object_mask(init_image)
+        inpainted_image = inpaint_image(init_image, mask_image, prompt)
+        inpainted_image = inpainted_image.resize(init_image.size, Image.LANCZOS)
+        
+        # Save the inpainted image
+        output_image_path = "inpainted_image.png"
+        inpainted_image.save(output_image_path)
+        print(f"Inpainted image saved successfully at: {output_image_path}")
 
-# Video prompts for background changes
-video_prompts = [
-    "A small vintage bicycle resting on a wooden pier, surrounded by calm water.",
-    "A large bright red bicycle parked under a blooming cherry blossom tree.",
-    "A bicycle on a cobblestone street, illuminated by street lamps at dusk.",
-    "A classic bicycle in a vibrant flower garden.",
-    "A bicycle against a rustic barn backdrop during golden hour."
-]
+    elif choice == 'video':
+        image_path = input("Enter the path of the image: ")
+        init_image = Image.open(image_path).convert("RGB")
+        
+        # Get multiple prompts for video generation
+        video_prompts = []
+        while True:
+            prompt = input("Enter a prompt for the video (or 'done' to finish): ")
+            if prompt.lower() == 'done':
+                break
+            video_prompts.append(prompt)
 
-# Generate frames with object resizing and dynamic background changes (using repeat_frames for slower video)
-frames = generate_frames_for_video(video_prompts, init_image, steps=10, scale_factor=0.98, interval=3, repeat_frames=5)
+        frames = generate_frames_for_video(video_prompts, init_image, steps=10, scale_factor=0.98, interval=3, repeat_frames=5)
 
-# Save the video (slower with reasonable fps)
-output_video_path = "/content/resized_bicycle_video.mp4"
-save_frames_to_video(frames, output_video_path, fps=5)  # Keep fps reasonable for smooth playback
+        # Save the video
+        output_video_path = "generated_video.mp4"
+        save_frames_to_video(frames, output_video_path, fps=5)
+        print(f"Video saved successfully at: {output_video_path}")
 
-print("Video saved successfully at:", output_video_path)
+    else:
+        print("Invalid choice. Please enter 'image' or 'video'.")
+
+# Example usage
+if __name__ == "__main__":
+    main()
+
 
