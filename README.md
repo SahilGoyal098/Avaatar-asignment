@@ -18,6 +18,61 @@ Here're some of the project's best features:
 *   Dynamic Resizing with Controlled Placement: Supports dynamic resizing of the object while maintaining its center positioning allowing for smooth transitions and natural-looking placements in various scenes.
 *   Seamless Integration into Videos: Generates a sequence of frames that create smooth transitions and coherent storytelling in video output enhancing user engagement.
 
+
+1. **Start**  
+   - Decision: *Do you want to generate a single image or a video?*
+
+---
+
+### For **Image** Generation:
+
+2. **Input Image Path**  
+   - User inputs the path of the image file.
+
+3. **Input Prompt for Inpainting**  
+   - User provides a prompt describing what to inpaint.
+
+4. **Generate Object Mask**  
+   - The code creates a mask by detecting the object in the image.
+
+5. **Resize and Center Images**  
+   - The object is resized and centered on a blank white background.
+
+6. **Inpaint Image**  
+   - Using the inpainting pipeline, the image is modified based on the mask and prompt.
+
+7. **Save Inpainted Image**  
+   - The inpainted image is saved to disk.
+
+---
+
+### For **Video** Generation:
+
+2. **Input Image Path**  
+   - User inputs the path of the image file.
+
+3. **Input Video Prompts**  
+   - User enters multiple prompts for video frame generation.
+
+4. **Generate Object Mask**  
+   - The code creates a mask by detecting the object in the image.
+
+5. **Resize and Center Images (Dynamic)**  
+   - The object is dynamically resized and centered at different scales.
+
+6. **Inpaint Image**  
+   - Inpainting occurs on dynamically resized frames.
+
+7. **Repeat Frames**  
+   - Each inpainted frame is repeated multiple times for a slower video effect.
+
+8. **Save Video**  
+   - The generated frames are compiled into a video file and saved.
+
+---
+
+**End**
+
 <h2>🛠️ Installation Steps:</h2>
 
 <p>1. Step 1: Install Python</p>
