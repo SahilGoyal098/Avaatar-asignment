@@ -20,7 +20,8 @@ Here're some of the project's best features:
 
 <h2>Flow of the Code</h2>
 
----
+<img src="https://github.com/user-attachments/assets/2d0656c3-71f5-4fe3-812e-49b6aa8887ac" alt="project-screenshot"/>
+
 
 1. **Start**  
    - Decision: *Do you want to generate a single image or a video?*
