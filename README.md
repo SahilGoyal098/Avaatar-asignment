@@ -18,11 +18,12 @@ Here're some of the project's best features:
 *   Dynamic Resizing with Controlled Placement: Supports dynamic resizing of the object while maintaining its center positioning allowing for smooth transitions and natural-looking placements in various scenes.
 *   Seamless Integration into Videos: Generates a sequence of frames that create smooth transitions and coherent storytelling in video output enhancing user engagement.
 
+<h2>Flow of the Code</h2>
+
+---
 
 1. **Start**  
    - Decision: *Do you want to generate a single image or a video?*
-
----
 
 ### For **Image** Generation:
 
@@ -43,8 +44,6 @@ Here're some of the project's best features:
 
 7. **Save Inpainted Image**  
    - The inpainted image is saved to disk.
-
----
 
 ### For **Video** Generation:
 
@@ -68,8 +67,6 @@ Here're some of the project's best features:
 
 8. **Save Video**  
    - The generated frames are compiled into a video file and saved.
-
----
 
 **End**
 
