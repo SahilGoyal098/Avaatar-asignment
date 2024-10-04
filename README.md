@@ -94,3 +94,13 @@ nvcc --version
 ```
 
 <p>5. Step 5: Download the Model Checkpoints (if required)</p>
+
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Python: The primary programming language used for writing the script.
+*   OpenCV: Used for image processing tasks like resizing grayscale conversion thresholding blurring and morphological operations.
+*   Pillow (PIL): Used for image manipulation converting images between different formats and handling image file input/output.
+*   Diffusers (Stable Diffusion Inpainting): A deep learning library from Hugging Face used for the inpainting process specifically leveraging the Stable Diffusion Inpainting model to fill in areas of the image based on a mask and text prompt.
+*   Torch (PyTorch): A deep learning framework used for model inference and interacting with the Stable Diffusion Inpainting model particularly handling tensors and operations on the GPU (CUDA).
